@@ -2,6 +2,12 @@
 
 Site vitrine simple pour présenter les spécialités du traiteur.
 
+## Site en ligne
+
+Le site est publié sur GitHub Pages :
+
+https://ogdaouda66-code.github.io/bolytraiteur/
+
 ## Hébergement gratuit
 
 Le site peut être publié gratuitement sur GitHub Pages en suivant ces étapes :
