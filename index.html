@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <title>BolyTraiteur</title>
+  <style>
+    :root {
+      --primary: #c04a4a;
+      --secondary: #f4a261;
+      --dark: #2f2a24;
+      --light: #fffaf4;
+      --muted: #6f675f;
+      --border: #f1e1d3;
+      --shadow: 0 18px 40px rgba(0,0,0,0.12);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+      background: linear-gradient(135deg, #fff8f0 0%, #fdf2e8 100%);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, var(--primary) 0%, #9a2f2f 100%);
+      color: white;
+      border-radius: 28px;
+      padding: 40px 30px;
+      box-shadow: var(--shadow);
+      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -30px -40px auto;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.12);
+    }
+
+    .hero-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+    .hero-logo {
+      width: 88px;
+      min-width: 88px;
+      height: 88px;
+      border-radius: 22px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+    }
+    .hero-logo img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .hero h1 { margin: 0; font-size: 2.2rem; }
+    .hero p {
+      margin: 0;
+      font-size: 1rem;
+      color: #fff4ef;
+      max-width: 760px;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .hero-cta {
+      display: inline-block;
+      padding: 12px 18px;
+      border-radius: 999px;
+      background: white;
+      color: var(--primary);
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.14);
+    }
+    .hero-info {
+      margin-top: 12px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.16);
+      display: inline-block;
+      font-weight: 600;
+    }
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .badge {
+      background: rgba(255,255,255,0.16);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .section-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin: 24px 0 12px;
+      color: var(--dark);
+    }
+    .section-intro {
+      color: var(--muted);
+      margin: 0 0 16px;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .feature-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: 0 10px 22px rgba(0,0,0,0.05);
+    }
+    .feature-card h3 { margin: 0 0 8px; color: var(--primary); }
+    .feature-card p { margin: 0; color: var(--muted); }
+
+    .tarif-section {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 24px;
+      box-shadow: 0 10px 22px rgba(0,0,0,0.05);
+    }
+    .tarif-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+    .tarif-item {
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: #fffaf4;
+      border: 1px solid var(--border);
+    }
+    .tarif-item strong { color: var(--primary); display: block; margin-bottom: 4px; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 12px 24px rgba(0,0,0,0.06);
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(0,0,0,0.1);
+    }
+
+    .card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-content { padding: 16px 18px 20px; }
+    .card h3 {
+      margin: 0 0 8px;
+      color: var(--primary);
+      font-size: 1.1rem;
+    }
+    .card p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+    .price-tag {
+      display: block;
+      margin-top: 10px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: #c04a4a;
+      color: white;
+      font-weight: 800;
+      font-size: 0.95rem;
+      text-align: center;
+      box-shadow: 0 6px 14px rgba(192,74,74,0.2);
+    }
+    .price-list {
+      margin-top: 10px;
+      display: grid;
+      gap: 8px;
+      padding: 12px;
+      border-radius: 12px;
+      background: #fffaf4;
+      border: 1px solid var(--border);
+    }
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      color: var(--dark);
+      font-size: 0.95rem;
+    }
+    .price-row strong { color: var(--primary); }
+
+    .order-box {
+      background: white;
+      border-radius: 20px;
+      padding: 22px;
+      margin-top: 24px;
+      border: 1px solid var(--border);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.06);
+    }
+
+    form { display: grid; gap: 12px; margin-top: 12px; }
+    label { font-weight: 600; color: var(--dark); }
+    input, textarea, button {
+      font: inherit;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid #e0cdbb;
+      width: 100%;
+    }
+    textarea { resize: vertical; min-height: 90px; }
+    button {
+      background: var(--primary);
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: 700;
+      transition: transform 0.2s ease;
+    }
+    button:hover { transform: translateY(-1px); }
+
+    .note { color: var(--muted); font-size: 0.95rem; margin-top: 8px; }
+    .success { margin-top: 10px; color: #2e7d32; font-weight: 600; }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.72);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 100;
+    }
+    .modal.open { display: flex; }
+    .modal-content {
+      background: white;
+      border-radius: 20px;
+      width: min(720px, 100%);
+      max-height: 90vh;
+      overflow: auto;
+      padding: 20px;
+      position: relative;
+    }
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #fff;
+      color: var(--primary);
+      border: 1px solid var(--border);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      padding: 0;
+    }
+    .modal-main-image {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      border-radius: 14px;
+      margin-bottom: 12px;
+    }
+    .thumbs {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .thumb-btn {
+      padding: 0;
+      background: transparent;
+      border: 2px solid transparent;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .thumb-btn.active { border-color: var(--primary); }
+    .thumb-btn img {
+      width: 100%;
+      height: 80px;
+      object-fit: cover;
+      display: block;
+    }
+    .quantity-control {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 12px 0;
+    }
+    .qty-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      padding: 0;
+      font-size: 1.2rem;
+    }
+    .qty-input {
+      width: 70px;
+      text-align: center;
+      padding: 10px;
+      border-radius: 999px;
+    }
+
+    @media (max-width: 760px) {
+      .grid { grid-template-columns: 1fr; }
+      .feature-grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 1.6rem; }
+      .container { padding: 16px; }
+      .thumbs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <section class="hero">
+      <div class="hero-header">
+        <div class="hero-logo" aria-label="Logo Bolly Traiteur">
+          <img src="assets/logo.svg" alt="Logo Bolly Traiteur" />
+        </div>
+        <h1>BolyTraiteur</h1>
+      </div>
+      <p>Traiteur gourmand spécialisé dans les salades de fruits, les nems, les fatayas, les pâtisseries et les gâteaux pour tous vos événements.</p>
+      <div class="hero-actions">
+        <a class="hero-cta" href="https://wa.me/221781044588?text=Bonjour%20BolyTraiteur%2C%20je%20souhaite%20commander" target="_blank" rel="noopener">Commander sur WhatsApp</a>
+      </div>
+      <div class="hero-info">☎️ +221 78 104 4588</div>
+      <div class="hero-badges">
+        <span class="badge">Frais & préparés avec soin</span>
+        <span class="badge">Commande simple en 2 minutes</span>
+        <span class="badge">Idéal pour événements & goûters</span>
+      </div>
+    </section>
+
+    <section class="feature-grid">
+      <article class="feature-card">
+        <h3>Produits frais</h3>
+        <p>Des desserts et bouchées soigneusement préparés pour un rendu gourmand à chaque fois.</p>
+      </article>
+      <article class="feature-card">
+        <h3>Commande rapide</h3>
+        <p>Choisissez vos produits, ajoutez-les à la commande et envoyez tout directement sur WhatsApp.</p>
+      </article>
+      <article class="feature-card">
+        <h3>Parfait pour tous vos moments</h3>
+        <p>Anniversaire, mariage, réunion familiale ou simple envie de douceur, BolyTraiteur est là.</p>
+      </article>
+    </section>
+
+    <section class="tarif-section">
+      <h2 class="section-title">Tarifs visibles</h2>
+      <div class="tarif-grid">
+        <div class="tarif-item"><strong>Gâteaux</strong>À partir de 8 000 FCFA</div>
+        <div class="tarif-item"><strong>Fataya viande</strong>100 FCFA l’unité</div>
+        <div class="tarif-item"><strong>Nems</strong>150 FCFA l’unité</div>
+        <div class="tarif-item"><strong>Mini tacos</strong>500 FCFA</div>
+        <div class="tarif-item"><strong>Mini pizza</strong>150 FCFA l’unité</div>
+        <div class="tarif-item"><strong>Beignets donuts</strong>100 FCFA</div>
+        <div class="tarif-item"><strong>Beignets crevette</strong>250 FCFA l’unité</div>
+        <div class="tarif-item"><strong>Bocchettes</strong>500 FCFA</div>
+        <div class="tarif-item"><strong>Quiche</strong>250 FCFA</div>
+      </div>
+    </section>
+
+    <h2 class="section-title">Nos spécialités</h2>
+    <p class="section-intro">Des saveurs variées, un rendu soigné et une présentation qui fait plaisir à voir.</p>
+    <section class="grid">
+      <article class="card special-card" data-category="salades">
+        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=900&q=80&v=20260728" alt="Salades de fruits" />
+        <div class="card-content">
+          <h3>Salades de fruits</h3>
+          <p>Des goblets frais et colorés, parfaits pour une pause gourmande ou un dessert léger.</p>
+          <span class="price-tag">À partir de 3 500 FCFA</span>
+        </div>
+      </article>
+
+      <article class="card special-card" data-category="fataya">
+        <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=900&q=80&v=20260728" alt="Nems croustillants" />
+        <div class="card-content">
+          <h3>Fatayas, Nems & Brioches</h3>
+          <p>Des bouchées croustillantes et des brioches gourmandes, parfaites pour un goûter ou un apéritif.</p>
+          <span class="price-tag">À partir de 2 500 FCFA</span>
+        </div>
+      </article>
+
+      <article class="card special-card" data-category="patisseries">
+        <img src="https://images.unsplash.com/photo-1483695028939-5bb13f8648b0?auto=format&fit=crop&w=900&q=80&v=20260728" alt="Pâtisseries gourmandes" />
+        <div class="card-content">
+          <h3>Pâtisseries</h3>
+          <p>Des douceurs variées et raffinées pour embellir vos moments de gourmandise.</p>
+          <span class="price-tag">À partir de 3 000 FCFA</span>
+        </div>
+      </article>
+
+      <article class="card special-card" data-category="gateaux">
+        <img src="https://images.unsplash.com/photo-1535141192574-5d4897c12636?auto=format&fit=crop&w=900&q=80&v=20260728" alt="Gâteaux raffinés" />
+        <div class="card-content">
+          <h3>Gâteaux</h3>
+          <p>Des gâteaux élégants et gourmands à offrir ou à partager lors de vos événements.</p>
+          <span class="price-tag">À partir de 8 000 FCFA</span>
+        </div>
+      </article>
+    </section>
+
+    <section class="order-box">
+      <h2 class="section-title">Commander facilement</h2>
+      <p class="note">Choisissez un produit, définissez la quantité, puis envoyez votre commande sur WhatsApp.</p>
+      <form id="orderForm">
+        <label for="name">Nom et prénom</label>
+        <input type="text" id="name" required />
+
+        <label for="phone">Téléphone</label>
+        <input type="tel" id="phone" required />
+
+        <label for="order">Votre commande</label>
+        <textarea id="order" placeholder="Ex: Salades de fruits x3, Fatayas & Nems x2..."></textarea>
+
+        <label for="address">Adresse</label>
+        <input type="text" id="address" />
+
+        <label for="message">Message</label>
+        <textarea id="message" placeholder="Informations complémentaires ou demande d’annulation"></textarea>
+
+        <button type="submit">Envoyer via WhatsApp</button>
+      </form>
+      <div id="formMessage" class="success"></div>
+    </section>
+  </main>
+
+  <div id="productModal" class="modal">
+    <div class="modal-content">
+      <button class="close-btn" id="closeModal" aria-label="Fermer">×</button>
+      <h3 id="modalTitle">Produit</h3>
+      <p id="modalDesc"></p>
+      <div class="thumbs" id="modalThumbs"></div>
+      <img id="modalMainImage" class="modal-main-image" src="" alt="Produit" />
+      <div class="quantity-control">
+        <button type="button" class="qty-btn" data-action="minus">−</button>
+        <input type="number" id="qtyInput" class="qty-input" min="1" max="20" value="1" />
+        <button type="button" class="qty-btn" data-action="plus">+</button>
+      </div>
+      <button type="button" id="addToOrder">Ajouter à la commande</button>
+    </div>
+  </div>
+
+  <script>
+    const specialCards = document.querySelectorAll('.special-card');
+    const modal = document.getElementById('productModal');
+    const closeModalBtn = document.getElementById('closeModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDesc = document.getElementById('modalDesc');
+    const modalThumbs = document.getElementById('modalThumbs');
+    const modalMainImage = document.getElementById('modalMainImage');
+    const qtyInput = document.getElementById('qtyInput');
+    const addToOrderBtn = document.getElementById('addToOrder');
+    const orderField = document.getElementById('order');
+    const form = document.getElementById('orderForm');
+    const messageBox = document.getElementById('formMessage');
+
+    const specials = {
+      salades: {
+        title: 'Salades de fruits',
+        desc: 'Des goblets gourmands et frais, parfaits pour un dessert léger ou une pause raffinée.',
+        images: [
+          'https://images.unsplash.com/photo-1497534446932-c925b458314e?auto=format&fit=crop&w=900&q=80&v=20260728',
+          'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=900&q=80&v=20260728',
+          'https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?auto=format&fit=crop&w=900&q=80&v=20260728'
+        ],
+        prices: [
+          { name: 'Salade de fruits', price: 'À partir de 3 500 FCFA' }
+        ]
+      },
+      fataya: {
+        title: 'Fatayas, Nems & Brioches',
+        desc: 'Des bouchées croustillantes, des nems bien dorés et des brioches gourmandes pour un goûter ou un apéritif.',
+        images: [
+          'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=900&q=80&v=20260728',
+          'https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=900&q=80&v=20260728',
+          'https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=80&v=20260728'
+        ],
+        prices: [
+          { name: 'Fataya viande', price: '100 FCFA l’unité' },
+          { name: 'Nems', price: '150 FCFA l’unité' },
+          { name: 'Mini tacos', price: '500 FCFA' },
+          { name: 'Mini pizza', price: '150 FCFA l’unité' }
+        ]
+      },
+      patisseries: {
+        title: 'Pâtisseries',
+        desc: 'Croissants pain au chocolat, éclairs et autres pâtisseries pour sublimer tous vos moments gourmands.',
+        images: [
+          'https://images.unsplash.com/photo-1483695028939-5bb13f8648b0?auto=format&fit=crop&w=900&q=80&v=20260728',
+          'https://images.unsplash.com/photo-1535254973040-607b474cbf3c?auto=format&fit=crop&w=900&q=80&v=20260728',
+          'https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=900&q=80&v=20260728'
+        ],
+        prices: [
+          { name: 'Beignets donuts', price: '100 FCFA' },
+          { name: 'Beignets crevette', price: '250 FCFA l’unité' },
+          { name: 'Bocchettes', price: '500 FCFA' },
+          { name: 'Quiche', price: '250 FCFA' }
+        ]
+      },
+      gateaux: {
+        title: 'Gâteaux',
+        desc: 'Des gâteaux gourmands et raffinés, avec plusieurs variétés pour tous les goûts.',
+        images: [
+          'https://images.unsplash.com/photo-1535141192574-5d4897c12636?auto=format&fit=crop&w=900&q=80&v=20260728',
+          'https://images.unsplash.com/photo-1524351199678-941a58a3df50?auto=format&fit=crop&w=900&q=80&v=20260728',
+          'https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=900&q=80&v=20260728'
+        ],
+        prices: [
+          { name: 'Gâteau', price: 'À partir de 8 000 FCFA' }
+        ]
+      }
+    };
+
+    let activeCategory = null;
+
+    function openModal(category) {
+      activeCategory = category;
+      const item = specials[category];
+      modalTitle.textContent = item.title;
+      modalDesc.innerHTML = `${item.desc}`;
+      const priceListHtml = `
+        <div class="price-list">
+          <div class="price-row"><strong>Prix</strong><strong>Produit</strong></div>
+          ${item.prices.map(entry => `
+            <div class="price-row">
+              <span>${entry.name}</span>
+              <strong>${entry.price}</strong>
+            </div>
+          `).join('')}
+        </div>
+      `;
+      modalDesc.insertAdjacentHTML('beforeend', priceListHtml);
+      modalMainImage.src = item.images[0];
+      modalThumbs.innerHTML = item.images.map((src, index) => `
+        <button type="button" class="thumb-btn ${index === 0 ? 'active' : ''}" data-src="${src}">
+          <img src="${src}" alt="${item.title}" />
+        </button>
+      `).join('');
+      qtyInput.value = 1;
+      modal.classList.add('open');
+    }
+
+    function closeModal() {
+      modal.classList.remove('open');
+      activeCategory = null;
+    }
+
+    specialCards.forEach(card => {
+      card.addEventListener('click', () => openModal(card.dataset.category));
+    });
+
+    closeModalBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (event) => {
+      if (event.target === modal) closeModal();
+    });
+
+    modalThumbs.addEventListener('click', (event) => {
+      const button = event.target.closest('.thumb-btn');
+      if (!button) return;
+      modalMainImage.src = button.dataset.src;
+      [...modalThumbs.children].forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+    });
+
+    document.querySelectorAll('.qty-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        const current = Number(qtyInput.value) || 1;
+        const next = button.dataset.action === 'plus' ? current + 1 : Math.max(1, current - 1);
+        qtyInput.value = next;
+      });
+    });
+
+    addToOrderBtn.addEventListener('click', () => {
+      if (!activeCategory) return;
+      const item = specials[activeCategory];
+      const qty = qtyInput.value;
+      const entry = `${item.title} x${qty}`;
+      const existing = orderField.value.trim();
+      orderField.value = existing ? `${existing}\n${entry}` : entry;
+      messageBox.textContent = `${entry} ajouté à la commande.`;
+      closeModal();
+    });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const order = document.getElementById('order').value.trim();
+      const address = document.getElementById('address').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      if (!name || !phone || !order) {
+        messageBox.textContent = 'Veuillez remplir votre nom, téléphone et choisir au moins un produit.';
+        return;
+      }
+
+      const text = `Bonjour BolyTraiteur, je souhaite passer une commande.%0A%0ANom: ${encodeURIComponent(name)}%0ATéléphone: ${encodeURIComponent(phone)}%0ACommande: ${encodeURIComponent(order)}%0AAdresse: ${encodeURIComponent(address || 'Non renseignée')}%0AMessage: ${encodeURIComponent(message || 'Aucun')}`;
+      const whatsappNumber = '221781044588';
+      const url = `https://wa.me/${whatsappNumber}?text=${text}`;
+      window.open(url, '_blank');
+      messageBox.textContent = 'Votre commande est prête à être envoyée sur WhatsApp.';
+      form.reset();
+    });
+  </script>
+</body>
+</html>
