@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="600" viewBox="0 0 900 600">
+  <rect width="900" height="600" fill="#fff8ef"/>
+  <rect x="140" y="160" width="620" height="300" rx="40" fill="#ffffff"/>
+  <rect x="240" y="240" width="420" height="160" rx="24" fill="#e8b975"/>
+  <rect x="270" y="220" width="120" height="90" rx="16" fill="#d6787f"/>
+  <rect x="410" y="220" width="120" height="90" rx="16" fill="#8e6e53"/>
+  <rect x="550" y="220" width="90" height="90" rx="16" fill="#6fbf73"/>
+  <path d="M240 390c80 40 180 60 220 60s140-20 220-60" stroke="#8d4b2c" stroke-width="14" fill="none" stroke-linecap="round"/>
+  <text x="450" y="520" text-anchor="middle" font-family="Segoe UI, Arial" font-size="34" fill="#8d4b2c">Gâteaux</text>
+</svg>
