@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="600" viewBox="0 0 900 600">
+  <rect width="900" height="600" fill="#fff8ef"/>
+  <rect x="120" y="140" width="660" height="320" rx="40" fill="#ffffff"/>
+  <ellipse cx="360" cy="300" rx="140" ry="110" fill="#c97a43"/>
+  <ellipse cx="560" cy="300" rx="140" ry="110" fill="#d9a25f"/>
+  <path d="M240 290c40-70 120-110 220-110 100 0 180 40 220 110" stroke="#6d4c41" stroke-width="16" fill="none" stroke-linecap="round"/>
+  <path d="M290 360c50 30 120 50 180 50 70 0 140-20 190-50" stroke="#4caf50" stroke-width="12" fill="none" stroke-linecap="round"/>
+  <text x="450" y="520" text-anchor="middle" font-family="Segoe UI, Arial" font-size="34" fill="#8d4b2c">Fatayas et nems</text>
+</svg>
