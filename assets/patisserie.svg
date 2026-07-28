@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="600" viewBox="0 0 900 600">
+  <rect width="900" height="600" fill="#fff9f1"/>
+  <rect x="120" y="140" width="660" height="320" rx="40" fill="#ffffff"/>
+  <path d="M270 260c0-70 60-120 130-120s130 50 130 120v90H270z" fill="#d8a65c"/>
+  <path d="M470 260c0-70 60-120 130-120s130 50 130 120v90H470z" fill="#b86b3d"/>
+  <path d="M320 370c50 40 120 60 180 60s130-20 180-60" stroke="#8d4b2c" stroke-width="14" fill="none" stroke-linecap="round"/>
+  <text x="450" y="520" text-anchor="middle" font-family="Segoe UI, Arial" font-size="34" fill="#8d4b2c">Pâtisseries</text>
+</svg>
